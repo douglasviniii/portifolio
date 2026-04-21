@@ -474,7 +474,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           className="w-full rounded-2xl overflow-hidden shadow-xl relative"
                         >
                           <img 
-                            src="/foto/foto.jpeg" 
+                            src="/foto/foto2.png" 
                             alt="Douglas Vini" 
                             className="w-full h-auto block object-cover"
                           />
