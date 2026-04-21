@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { HiMail, HiPhone, HiMapPin, HiGithub, HiEnvelopeOpen } from 'react-icons/hi'
+import { HiMail, HiPhone, HiLocationMarker, HiMailOpen } from 'react-icons/hi'
+import { FiGithub } from 'react-icons/fi'
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -38,7 +39,7 @@ export default function Contact() {
       color: 'neon-pink',
     },
     {
-      icon: HiGithub,
+      icon: FiGithub,
       label: 'GitHub',
       value: '@douglasviniii',
       href: 'https://github.com/douglasviniii',
@@ -52,7 +53,7 @@ export default function Contact() {
       color: 'neon-purple',
     },
     {
-      icon: HiMapPin,
+      icon: HiLocationMarker,
       label: 'Location',
       value: 'Brazil',
       href: '#',
@@ -143,7 +144,7 @@ export default function Contact() {
                 whileHover={{ scale: 1.05 }}
                 className="btn-primary inline-flex items-center gap-2"
               >
-                <HiGithub className="text-lg" />
+                <FiGithub className="text-lg" />
                 Visit GitHub
               </motion.a>
             </motion.div>
@@ -226,7 +227,7 @@ export default function Contact() {
               whileTap={{ scale: 0.95 }}
               className="btn-primary w-full flex items-center justify-center gap-2"
             >
-              <HiEnvelopeOpen className="text-lg" />
+              <HiMailOpen className="text-lg" />
               Send Message
             </motion.button>
 

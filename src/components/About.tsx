@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { HiCode, HiRocket, HiLightBulb, HiZap } from 'react-icons/hi'
+import { HiCode, HiLightningBolt, HiLightBulb, HiTrendingUp } from 'react-icons/hi'
 
 export default function About() {
   const strengths = [
@@ -9,7 +9,7 @@ export default function About() {
       description: 'From React Native mobile apps to NestJS backends, I build complete products with modern tech stacks.',
     },
     {
-      icon: HiRocket,
+      icon: HiLightningBolt,
       title: 'Performance First',
       description: 'I optimize every pixel and every API call. Caching, virtualization, and efficient architecture matter.',
     },
@@ -19,7 +19,7 @@ export default function About() {
       description: 'Clean code, scalable systems, and thoughtful UX. I approach problems with both technical and user perspective.',
     },
     {
-      icon: HiZap,
+      icon: HiTrendingUp,
       title: 'Rapid Iteration',
       description: 'Agile mindset. I ship MVPs quickly while maintaining code quality and the ability to scale.',
     },

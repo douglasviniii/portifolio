@@ -34,9 +34,9 @@ const content = {
 export default function Hero({ setActiveSection, language, onExpandedChange, colorIndex = 0 }: HeroProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [section, setSection] = useState(0) // 0 = nome/foto, 1 = about/foto1
-  const [autoCloseTimer, setAutoCloseTimer] = useState<NodeJS.Timeout | null>(null)
-  const [expandTimer, setExpandTimer] = useState<NodeJS.Timeout | null>(null)
-  const [navTimer, setNavTimer] = useState<NodeJS.Timeout | null>(null)
+  const [autoCloseTimer, setAutoCloseTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
+  const [expandTimer, setExpandTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
+  const [navTimer, setNavTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
   const [isNameHovered, setIsNameHovered] = useState(false)
   const [touchStartY, setTouchStartY] = useState<number | null>(null)
   const expandedRef = useRef<HTMLDivElement>(null)

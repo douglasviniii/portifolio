@@ -45,7 +45,7 @@ export default function NavMenu({ language, colorIndex, setColorIndex }: NavMenu
 
   const handleMenuClick = () => {
     setIsOpen(!isOpen)
-    setColorIndex((prev) => (prev + 1) % colors.length)
+    setColorIndex((colorIndex + 1) % colors.length)
   }
 
   // 6 dots positions

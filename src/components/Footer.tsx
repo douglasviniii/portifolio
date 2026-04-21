@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { HiGithub, HiArrowUp } from 'react-icons/hi'
-import { FiInstagram, FiMessageCircle } from 'react-icons/fi'
+import { HiArrowUp } from 'react-icons/hi'
+import { FiInstagram, FiMessageCircle, FiGithub } from 'react-icons/fi'
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -83,7 +83,7 @@ export default function Footer() {
                 className="text-gray-400 hover:text-neon-cyan transition-colors text-2xl"
                 title="GitHub"
               >
-                <HiGithub />
+                <FiGithub />
               </motion.a>
               <motion.a
                 href="https://wa.me/5545999190438"
