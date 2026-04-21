@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { HiExternalLink } from 'react-icons/hi'
+import ParticleBackground from './ParticleBackground'
 
 interface ProjectsProps {
   language: 'pt' | 'en'
@@ -26,8 +27,8 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 'diamond',
-    title: 'Diamond Mobile App',
+    id: 'flipple-arcade-app',
+    title: 'Flipple Arcade',
     description: 'High-performance React Native social network with real-time features',
     descriptionPt: 'Rede social em React Native de alto desempenho com recursos em tempo real',
     longDescription: 'A feature-rich mobile app with feed, communities, real-time chat, live streaming, gamification and marketplace. Optimized for performance with React Query, MMKV storage and FlashList for virtualized rendering.',
@@ -35,6 +36,7 @@ const projects: Project[] = [
     image: 'diamond.png',
     tags: ['React Native', 'Expo', 'Firebase', 'React Query', 'TypeScript'],
     github: 'https://github.com/douglasviniii/mobile',
+    live: 'https://flipplearcade.com',
     featured: true,
     highlights: [
       'Performance-optimized caching system',
@@ -181,33 +183,6 @@ const projects: Project[] = [
       'Editor Monaco',
       'Sistema multi-papel',
       'Relatórios PDF',
-    ],
-  },
-  {
-    id: 'flipple-arcade',
-    title: 'Flipple Arcade',
-    description: 'Gaming streaming platform and community for mobile gamers',
-    descriptionPt: 'Plataforma de streaming de games e comunidade para jogadores mobile',
-    longDescription: 'A revolutionary streaming platform for mobile gamers where users can broadcast their gameplay, create communities, and monetize their content. Features include live studio with PC support, selfie live streaming, audio chat, and integrated payment system.',
-    longDescriptionPt: 'Uma plataforma revolucionária de streaming para jogadores mobile onde os usuários podem transmitir suas partidas, criar comunidades e monetizar conteúdo. Inclui estúdio de transmissão com suporte a PC, transmissão ao vivo por selfie, chat com áudio e sistema de pagamento integrado.',
-    image: 'flipple.png',
-    tags: ['React Native', 'Next.js', 'Firebase', 'Expo', 'Node.js'],
-    github: 'https://github.com/delvind',
-    live: 'https://flipplearcade.com',
-    featured: true,
-    highlights: [
-      'Live streaming with multiple camera layouts',
-      'Community & audience monetization',
-      'Mobile-first gaming focus',
-      'Real-time Drix currency system',
-      'Cross-platform streaming',
-    ],
-    highlightsPt: [
-      'Transmissão ao vivo com layouts múltiplos',
-      'Monetização de comunidade',
-      'Foco em jogos mobile',
-      'Sistema de moeda Drix em tempo real',
-      'Transmissão multiplataforma',
     ],
   },
   {
@@ -524,7 +499,7 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-gray-50/92 backdrop-blur-sm z-40"
+        className="fixed inset-0 bg-white z-40"
         onClick={onClose}
       >
         <motion.div
@@ -546,6 +521,8 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
           className="fixed inset-0 w-full flex flex-col items-center justify-start p-4 z-50 pointer-events-auto overflow-y-auto pt-20 pb-20"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Snow particles */}
+          <ParticleBackground colorIndex={colorIndex} absolute />
           {/* Header */}
           <motion.h1
             initial={{ opacity: 0, y: -20 }}

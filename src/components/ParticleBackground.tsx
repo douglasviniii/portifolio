@@ -3,9 +3,10 @@ import { useMemo } from 'react'
 
 interface ParticleBackgroundProps {
   colorIndex?: number
+  absolute?: boolean
 }
 
-export default function ParticleBackground({ colorIndex = 0 }: ParticleBackgroundProps) {
+export default function ParticleBackground({ colorIndex = 0, absolute = false }: ParticleBackgroundProps) {
   const colors = [
     { light: '#6B7280', dark: '#4B5563' },      // 0: cinza (padrão)
     { light: '#ec4899', dark: '#be123c' },      // 1: pink
@@ -38,7 +39,7 @@ export default function ParticleBackground({ colorIndex = 0 }: ParticleBackgroun
   )
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div className={`${absolute ? 'absolute' : 'fixed'} inset-0 ${absolute ? 'z-0' : '-z-10'} pointer-events-none overflow-hidden`}>
 
       {/* Falling particles - Snow effect */}
       {particles.map((particle) => (

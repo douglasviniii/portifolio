@@ -17,7 +17,7 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projetos',
     aboutTitle: 'Sobre Mim',
-    about: 'Olá, me chamo Evandro Douglas, conhecido como Douglas Vini. Tenho 25 anos e comecei a estudar programação aos 16 anos de idade. Tenho experiência com as tecnologias listadas acima e estou pronto para te conhecer através dos meus projetos. Se algo chamou a sua atenção, se você quer algo sob medida ou tem interesse em uma proposta empresarial, entre em contato pelas minhas redes sociais!\n\nA programação não é apenas parte da minha vida — ela é a minha vida. Não consigo me imaginar fazendo outra coisa. Cada desafio que surge me motiva a estudar mais, a dominar o que ainda não sei. Quando encontro algo que não consigo resolver de imediato, isso me impulsiona a ir mais fundo, até ter domínio completo do problema.\n\nTenho diversos projetos desenvolvidos, desde sistemas de emissão de notas fiscais eletrônicas até plataformas completas de mobilidade e streaming. A maioria dos meus repositórios são privados, mas posso apresentá-los em uma reunião agendada. Para mim, programar não é trabalho — é paixão. E é essa paixão que me faz querer me profissionalizar cada vez mais.',
+    about: 'Olá, me chamo Edvandro Douglas, conhecido como Douglas Vini. Tenho 25 anos e comecei a estudar programação aos 16 anos de idade. Tenho experiência com as tecnologias listadas abaixo e estou pronto para te conhecer através dos meus projetos. Se algo chamou a sua atenção, se você quer algo sob medida ou tem interesse em uma proposta empresarial, entre em contato pelas minhas redes sociais!\n\nA programação não é apenas parte da minha vida — ela é a minha vida. Não consigo me imaginar fazendo outra coisa. Cada desafio que surge me motiva a estudar mais, a dominar o que ainda não sei. Quando encontro algo que não consigo resolver de imediato, isso me impulsiona a ir mais fundo, até ter domínio completo do problema.\n\nTenho diversos projetos desenvolvidos, desde sistemas de emissão de notas fiscais eletrônicas até plataformas completas de mobilidade e streaming. A maioria dos meus repositórios são privados, mas posso apresentá-los em uma reunião agendada. Para mim, programar não é trabalho — é paixão. E é essa paixão que me faz querer me profissionalizar cada vez mais.\n\nUm projeto que carrego com muito carinho é o [[Flipple Arcade]] — um app de streaming voltado para jogadores mobile, onde os usuários podem transmitir suas partidas ao vivo, criar comunidades, monetizar conteúdo e muito mais. Minha inspiração veio do Omlet Arcade, um app que admirava muito e que foi encerrado em 2023. Quis replicar essa experiência com foco no público brasileiro, especialmente quem joga Minecraft — um jogo que fez parte da minha infância.',
   },
   en: {
     title: 'Douglas Vini',
@@ -27,7 +27,7 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projects',
     aboutTitle: 'About Me',
-    about: `Hi, my name is Evandro Douglas, known as Douglas Vini. I'm 25 years old and started studying programming at 16. I have experience with the technologies listed above and I'm ready to meet you through my projects. If something caught your attention, if you want a custom solution, or if you're interested in a business proposal, reach out through one of my social networks!\n\nProgramming isn't just a part of my life — it is my life. I cannot imagine doing anything else. Every challenge motivates me to study harder, to master what I don't yet know. When I encounter something I can't solve right away, it drives me to go deeper, until I fully understand and conquer the problem.\n\nI've built a diverse range of projects, from electronic invoice platforms to complete mobility and streaming systems. Most of my repositories are private, but I'm happy to walk you through them in a scheduled meeting. For me, coding isn't a job — it's a passion. And that passion is what keeps pushing me to grow and become even more professional in this field.`,
+    about: `Hi, my name is Edvandro Douglas, known as Douglas Vini. I'm 25 years old and started studying programming at 16. I have experience with the technologies listed below and I'm ready to meet you through my projects. If something caught your attention, if you want a custom solution, or if you're interested in a business proposal, reach out through one of my social networks!\n\nProgramming isn't just a part of my life — it is my life. I cannot imagine doing anything else. Every challenge motivates me to study harder, to master what I don't yet know. When I encounter something I can't solve right away, it drives me to go deeper, until I fully understand and conquer the problem.\n\nI've built a diverse range of projects, from electronic invoice platforms to complete mobility and streaming systems. Most of my repositories are private, but I'm happy to walk you through them in a scheduled meeting. For me, coding isn't a job — it's a passion. And that passion is what keeps pushing me to grow and become even more professional in this field.\n\nOne project I hold very close to my heart is [[Flipple Arcade]] — a streaming app built for mobile gamers, where users can broadcast gameplay live, build communities, monetize their content, and much more. My inspiration came from Omlet Arcade, an app I deeply admired that shut down in 2023. I wanted to replicate that experience with a focus on the Brazilian gaming community, especially Minecraft players — a game that was a big part of my childhood.`,
   },
 }
 
@@ -104,11 +104,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
   }
 
   const handleMouseLeave = () => {
-    const timer = setTimeout(() => {
-      setIsExpanded(false)
-      setSection(0)
-    }, 3000)
-    setAutoCloseTimer(timer)
+    // Não fecha automaticamente - só fecha ao clicar em "Fechar"
   }
 
   const handleMoveDown = () => {
@@ -340,7 +336,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                             Email
                           </motion.a>
                           <motion.a
-                            href="https://wa.me/5511999999999"
+                            href="https://wa.me/554599190438"
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05, color: '#000' }}
@@ -350,7 +346,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                             Whatsapp
                           </motion.a>
                           <motion.a
-                            href="https://instagram.com/douglasviniii"
+                            href="https://instagram.com/douglasvini.dev"
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05, color: '#000' }}
@@ -432,9 +428,28 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3, duration: 0.5 }}
-                          className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8 whitespace-pre-line"
+                          className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
                         >
-                          {texts.about}
+                          {texts.about.split('\n\n').map((paragraph, i) => {
+                            if (paragraph.includes('[[Flipple Arcade]]')) {
+                              const parts = paragraph.split('[[Flipple Arcade]]')
+                              return (
+                                <p key={i} className="mb-3">
+                                  {parts[0]}
+                                  <a
+                                    href="https://flipplearcade.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-bold text-purple-600 hover:text-purple-800 underline transition-colors"
+                                  >
+                                    Flipple Arcade
+                                  </a>
+                                  {parts[1]}
+                                </p>
+                              )
+                            }
+                            return <p key={i} className="mb-3">{paragraph}</p>
+                          })}
                         </motion.p>
 
                         <motion.div
