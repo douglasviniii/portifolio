@@ -63,6 +63,7 @@ const projects: Project[] = [
     image: 'aginotas.png',
     tags: ['Next.js', 'Firebase', 'XML/Cryptography', 'React', 'TypeScript'],
     github: 'https://github.com/douglasviniii/Aginotas',
+    live: 'https://aginotas.com.br',
     featured: true,
     highlights: [
       'Digital invoice generation',
