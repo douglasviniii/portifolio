@@ -85,11 +85,11 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
     if (!el || !isExpanded) return
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
-      if (e.deltaY > 100) {
+      if (e.deltaY > 30) {
         if (sectionRef.current === 0) setSection(1)
         if (autoCloseTimer) clearTimeout(autoCloseTimer)
       }
-      if (e.deltaY < -100) {
+      if (e.deltaY < -30) {
         if (sectionRef.current === 1) setSection(0)
         if (autoCloseTimer) clearTimeout(autoCloseTimer)
       }
@@ -393,11 +393,11 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                       </motion.div>
                     </div>
 
-                    {/* Botão navegação mobile - ir para About */}
-                    <div className="flex justify-center mt-6 md:hidden">
+                    {/* Botão navegação - ir para About */}
+                    <div className="flex justify-center mt-6">
                       <button
                         onClick={handleMoveDown}
-                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2"
+                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-100 transition-colors"
                       >
                         Sobre Mim <span>↓</span>
                       </button>
@@ -482,11 +482,11 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                       </motion.div>
                     </div>
 
-                    {/* Botão navegação mobile - voltar para início */}
-                    <div className="flex justify-center mt-6 md:hidden">
+                    {/* Botão navegação - voltar para início */}
+                    <div className="flex justify-center mt-6">
                       <button
                         onClick={handleMoveUp}
-                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2"
+                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-100 transition-colors"
                       >
                         <span>↑</span> Voltar
                       </button>
