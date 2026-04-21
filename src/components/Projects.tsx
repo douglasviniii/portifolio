@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { HiExternalLink } from 'react-icons/hi'
 import ParticleBackground from './ParticleBackground'
 
@@ -7,6 +7,7 @@ interface ProjectsProps {
   language: 'pt' | 'en'
   colorIndex: number
   onClose: () => void
+  onAboutMe: () => void
 }
 
 interface Project {
@@ -458,8 +459,10 @@ const WormholeEffect = ({ colorIndex, isVisible }: { colorIndex: number; isVisib
   )
 }
 
-export default function Projects({ language, colorIndex, onClose }: ProjectsProps) {
+export default function Projects({ language, colorIndex, onClose, onAboutMe }: ProjectsProps) {
   const [isWormholeVisible, setIsWormholeVisible] = useState(true)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const scrollPosRef = useRef(0)
   
   const colors = [
     'from-gray-600 to-gray-400',
@@ -484,6 +487,13 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
   }
   const label = labels[language]
 
+  // Preserve scroll position across color-change re-renders
+  useLayoutEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = scrollPosRef.current
+    }
+  })
+
   // Hide wormhole after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -503,6 +513,11 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
         className="fixed inset-0 bg-white z-40"
         onClick={onClose}
       >
+        {/* Snow particles - fixed, outside scroll container */}
+        <div className="fixed inset-0 z-41 pointer-events-none">
+          <ParticleBackground colorIndex={colorIndex} absolute />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -514,16 +529,12 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
         </motion.div>
 
         {/* Projects content - Timeline vertical */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+        <div
+          ref={scrollContainerRef}
+          onScroll={(e) => { scrollPosRef.current = e.currentTarget.scrollTop }}
           className="fixed inset-0 w-full flex flex-col items-center justify-start p-4 z-50 pointer-events-auto overflow-y-auto pt-20 pb-20"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Snow particles */}
-          <ParticleBackground colorIndex={colorIndex} absolute />
           {/* Header */}
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -538,6 +549,8 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
           <div className="relative w-full max-w-5xl">
             {/* Mobile: linha à esquerda | Desktop: linha no centro */}
             <div className={`absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 md:-translate-x-1/2 bg-gradient-to-b ${currentColor} z-0 opacity-80`} />
+            {/* Quadradinho no topo da linha */}
+            <div className={`absolute top-0 left-1.5 md:left-1/2 md:-translate-x-1/2 w-3 h-3 md:w-4 md:h-4 bg-gradient-to-r ${currentColor} z-10 -translate-y-1/2`} />
 
             {/* Projects timeline */}
             <div className="space-y-12">
@@ -546,9 +559,9 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
                 return (
                   <motion.div
                     key={project.id}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
                     className={`relative z-10 pl-8 w-full md:pl-0 md:w-1/2 ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}
                   >
                     {/* Timeline dot - mobile: esquerda | desktop: lado correto */}
@@ -633,22 +646,35 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
           </div>
 
           {/* Close button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            onClick={onClose}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`mt-20 px-8 py-3 font-semibold rounded-lg transition-all ${
-              colorIndex === 0
-                ? 'bg-gray-800 text-white hover:bg-gray-700'
-                : `bg-gradient-to-r ${currentColor} text-white hover:shadow-lg`
-            }`}
-          >
-            {label.close}
-          </motion.button>
-        </motion.div>
+          <div className="mt-20 flex flex-col sm:flex-row gap-4 items-center">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              onClick={onAboutMe}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-8 py-3 font-semibold rounded-lg border-2 transition-all ${
+                colorIndex === 0
+                  ? 'border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white'
+                  : `border-transparent bg-gradient-to-r ${currentColor} text-white hover:shadow-lg`
+              }`}
+            >
+              {language === 'pt' ? 'Sobre Mim →' : 'About Me →'}
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              onClick={onClose}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 font-semibold rounded-lg border border-gray-400 text-gray-600 hover:bg-gray-100 transition-all"
+            >
+              {label.close}
+            </motion.button>
+          </div>
+        </div>
       </motion.div>
     </AnimatePresence>
   )

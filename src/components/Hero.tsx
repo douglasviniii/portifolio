@@ -6,6 +6,7 @@ interface HeroProps {
   language: 'pt' | 'en'
   onExpandedChange: (expanded: boolean) => void
   colorIndex?: number
+  registerOpenAboutMe?: (fn: () => void) => void
 }
 
 const content = {
@@ -31,7 +32,7 @@ const content = {
   },
 }
 
-export default function Hero({ setActiveSection, language, onExpandedChange, colorIndex = 0 }: HeroProps) {
+export default function Hero({ setActiveSection, language, onExpandedChange, colorIndex = 0, registerOpenAboutMe }: HeroProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [section, setSection] = useState(0) // 0 = nome/foto, 1 = about/foto1
   const [autoCloseTimer, setAutoCloseTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
@@ -39,6 +40,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
   const [navTimer, setNavTimer] = useState<ReturnType<typeof setTimeout> | null>(null)
   const [isNameHovered, setIsNameHovered] = useState(false)
   const [touchStartY, setTouchStartY] = useState<number | null>(null)
+  const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const expandedRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef(section)
   const texts = content[language]
@@ -79,6 +81,15 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
   useEffect(() => {
     onExpandedChange(isExpanded)
   }, [isExpanded, onExpandedChange])
+
+  useEffect(() => {
+    if (registerOpenAboutMe) {
+      registerOpenAboutMe(() => {
+        setIsExpanded(true)
+        setSection(0)
+      })
+    }
+  }, [registerOpenAboutMe])
 
   useEffect(() => {
     const el = expandedRef.current
@@ -211,11 +222,19 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
             className="w-full h-full flex items-center justify-center"
-            onTouchStart={(e) => setTouchStartY(e.touches[0].clientY)}
+            onTouchStart={(e) => {
+              setTouchStartY(e.touches[0].clientY)
+              setTouchStartX(e.touches[0].clientX)
+            }}
             onTouchMove={(e) => {
               if (touchStartY === null) return
-              const delta = touchStartY - e.touches[0].clientY
-              if (delta > 50) {
+              const deltaY = touchStartY - e.touches[0].clientY
+              const deltaX = (touchStartX ?? 0) - e.touches[0].clientX
+              if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < -50) {
+                setTouchStartY(null)
+                setIsExpanded(true)
+                setSection(1)
+              } else if (deltaY > 50) {
                 setTouchStartY(null)
                 setIsExpanded(true)
                 setSection(1)
@@ -232,13 +251,20 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                 <motion.div 
                   onMouseEnter={handleNameMouseEnter}
                   onMouseLeave={handleNameMouseLeave}
-                  onClick={() => setIsExpanded(true)}
-                  className="mb-6 cursor-pointer group">
+                  onClick={() => { setIsExpanded(true); setSection(0) }}
+                  className="mb-6 cursor-pointer group flex items-center justify-center gap-4">
                   <motion.h1
                     className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight transition-all text-gray-900"
                   >
                     {renderWaveText(texts.title)}
                   </motion.h1>
+                  <motion.span
+                    animate={{ x: [0, 10, 0] }}
+                    transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+                    className={`text-3xl md:text-5xl font-light select-none ${colorIndex === 0 ? 'text-gray-400' : `bg-gradient-to-r ${currentColor} bg-clip-text text-transparent`}`}
+                  >
+                    →
+                  </motion.span>
                 </motion.div>
 
                 <motion.h2

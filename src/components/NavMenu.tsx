@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
+
 
 interface NavMenuProps {
   language: 'pt' | 'en'
@@ -23,8 +23,6 @@ const menuItems = {
 }
 
 export default function NavMenu({ language, colorIndex, setColorIndex }: NavMenuProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isHover, setIsHover] = useState(false)
   const items = menuItems[language]
 
   const colors = [
@@ -44,7 +42,6 @@ export default function NavMenu({ language, colorIndex, setColorIndex }: NavMenu
   const currentColor = colors[colorIndex]
 
   const handleMenuClick = () => {
-    setIsOpen(!isOpen)
     setColorIndex((colorIndex + 1) % colors.length)
   }
 
@@ -67,72 +64,33 @@ export default function NavMenu({ language, colorIndex, setColorIndex }: NavMenu
       {/* Menu Button - 6 dots */}
       <motion.button
         onClick={handleMenuClick}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="p-3 rounded-lg transition-all relative w-10 h-10 flex items-center justify-center"
       >
         {/* 6 Dots */}
-        <AnimatePresence>
-          {!isHover && !isOpen ? (
+        <div className="relative w-full h-full flex items-center justify-center">
+          {dots.map((dot, i) => (
             <motion.div
-              key="dots"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              {dots.map((dot, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r ${currentColor}`}
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                    marginLeft: '-3px',
-                    marginTop: '-3px',
-                  }}
-                  animate={{
-                    x: dot.x,
-                    y: dot.y,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="cross"
-              initial={{ opacity: 0, rotate: -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 90 }}
-              transition={{ duration: 0.2 }}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              {/* Horizontal line */}
-              <motion.div className={`absolute w-5 h-0.5 bg-gradient-to-r ${currentColor} rounded-full`} />
-              {/* Vertical line */}
-              <motion.div className={`absolute w-0.5 h-5 bg-gradient-to-r ${currentColor} rounded-full`} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+              key={i}
+              className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r ${currentColor}`}
+              style={{
+                left: '50%',
+                top: '50%',
+                marginLeft: '-3px',
+                marginTop: '-3px',
+              }}
+              animate={{
+                x: dot.x,
+                y: dot.y,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          ))}
+        </div>
       </motion.button>
 
       {/* Dropdown Menu - REMOVIDO */}
-
-      {/* Backdrop */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-30"
-          />
-        )}
-      </AnimatePresence>
     </motion.div>
   )
 }
