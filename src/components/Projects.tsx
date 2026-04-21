@@ -557,24 +557,23 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
           </motion.h1>
 
           {/* Timeline container */}
-          <div className="relative w-full max-w-5xl">
-            {/* Left line on mobile, center line on desktop */}
-            <div className={`absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 md:-translate-x-1/2 bg-gradient-to-b ${currentColor} z-0 opacity-80`} />
+          <div className="relative w-full max-w-2xl">
+            {/* Line */}
+            <div className={`absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b ${currentColor} z-0 opacity-80`} />
 
             {/* Projects timeline */}
             <div className="space-y-12">
               {allProjects.map((project, index) => {
-                const isLeft = index % 2 === 0
                 return (
                   <motion.div
                     key={project.id}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                    className={`relative z-10 pl-8 md:pl-0 md:${isLeft ? 'mr-auto pr-12 w-1/2' : 'ml-auto pl-12 w-1/2'} w-full`}
+                    className="relative z-10 pl-8 w-full"
                   >
                     {/* Timeline dot */}
-                    <div className={`absolute top-5 w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r ${currentColor} z-20 left-0.5 md:left-auto ${isLeft ? 'md:-right-8' : 'md:-left-8'}`} />
+                    <div className={`absolute top-5 left-0.5 w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r ${currentColor} z-20`} />
 
                     {/* Project card */}
                     <motion.div

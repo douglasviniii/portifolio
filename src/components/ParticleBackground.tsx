@@ -61,7 +61,7 @@ export default function ParticleBackground({ colorIndex = 0 }: ParticleBackgroun
           transition={{
             duration: particle.duration,
             delay: particle.delay,
-            repeat: Infinity,
+            repeat: 0,
             ease: 'linear',
           }}
         />
