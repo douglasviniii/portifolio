@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface HeroProps {
   setActiveSection: (section: string) => void
@@ -38,7 +38,12 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
   const [expandTimer, setExpandTimer] = useState<NodeJS.Timeout | null>(null)
   const [navTimer, setNavTimer] = useState<NodeJS.Timeout | null>(null)
   const [isNameHovered, setIsNameHovered] = useState(false)
+  const [touchStartY, setTouchStartY] = useState<number | null>(null)
+  const expandedRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef(section)
   const texts = content[language]
+
+  useEffect(() => { sectionRef.current = section }, [section])
 
   const colors = [
     'from-gray-600 to-gray-400',      
@@ -74,6 +79,24 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
   useEffect(() => {
     onExpandedChange(isExpanded)
   }, [isExpanded, onExpandedChange])
+
+  useEffect(() => {
+    const el = expandedRef.current
+    if (!el || !isExpanded) return
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      if (e.deltaY > 100) {
+        if (sectionRef.current === 0) setSection(1)
+        if (autoCloseTimer) clearTimeout(autoCloseTimer)
+      }
+      if (e.deltaY < -100) {
+        if (sectionRef.current === 1) setSection(0)
+        if (autoCloseTimer) clearTimeout(autoCloseTimer)
+      }
+    }
+    el.addEventListener('wheel', handleWheel, { passive: false })
+    return () => el.removeEventListener('wheel', handleWheel)
+  }, [isExpanded])
 
   const handleMouseEnter = () => {
     setIsExpanded(true)
@@ -192,6 +215,16 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
             className="w-full h-full flex items-center justify-center"
+            onTouchStart={(e) => setTouchStartY(e.touches[0].clientY)}
+            onTouchMove={(e) => {
+              if (touchStartY === null) return
+              const delta = touchStartY - e.touches[0].clientY
+              if (delta > 50) {
+                setTouchStartY(null)
+                setIsExpanded(true)
+                setSection(1)
+              }
+            }}
           >
             <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 w-full">
               <motion.div
@@ -203,6 +236,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                 <motion.div 
                   onMouseEnter={handleNameMouseEnter}
                   onMouseLeave={handleNameMouseLeave}
+                  onClick={() => setIsExpanded(true)}
                   className="mb-6 cursor-pointer group">
                   <motion.h1
                     className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight transition-all text-gray-900"
@@ -241,17 +275,20 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
         ) : (
           // ESTADO EXPANDIDO - Carousel de seções
           <motion.div
+            ref={expandedRef}
             key="expanded"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.5 }}
-            className="w-full h-full flex items-center justify-center p-4"
+            className="w-full h-full flex items-start md:items-center justify-center p-4"
             onMouseLeave={handleMouseLeave}
-            onWheel={(e) => {
-              e.preventDefault()
-              if (e.deltaY > 100) handleMoveDown()
-              if (e.deltaY < -100) handleMoveUp()
+            onTouchStart={(e) => setTouchStartY(e.touches[0].clientY)}
+            onTouchMove={(e) => {
+              if (touchStartY === null) return
+              const delta = touchStartY - e.touches[0].clientY
+              if (delta > 50) { handleMoveDown(); setTouchStartY(null) }
+              else if (delta < -50) { handleMoveUp(); setTouchStartY(null) }
             }}
           >
             <div className="w-full">
@@ -266,14 +303,14 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                     transition={{ duration: 0.6, type: 'spring', stiffness: 60, damping: 20 }}
                     className="max-w-7xl mx-auto w-full"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
                       <motion.div
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="order-2 md:order-1"
+                        className="order-2 md:order-1 text-center md:text-left"
                       >
-                        <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter mb-2">
+                        <motion.h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tighter mb-2">
                           <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
                             Douglas Vini
                           </span>
@@ -292,7 +329,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4, duration: 0.5 }}
-                          className="flex gap-6"
+                          className="flex justify-center md:justify-start gap-6"
                         >
                           <motion.a
                             href="mailto:douglas@delvind.com"
@@ -339,7 +376,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                         initial={{ x: 100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className="order-1 md:order-2 flex justify-end"
+                        className="order-1 md:order-2 flex justify-center md:justify-end"
                       >
                         <motion.div
                           initial={{ scale: 0.8, opacity: 0 }}
@@ -350,10 +387,20 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           <img 
                             src="/foto/foto1.jpeg" 
                             alt="Foto1" 
-                            className="max-h-96 w-auto h-auto block"
+                            className="max-h-52 md:max-h-96 w-auto h-auto block"
                           />
                         </motion.div>
                       </motion.div>
+                    </div>
+
+                    {/* Botão navegação mobile - ir para About */}
+                    <div className="flex justify-center mt-6 md:hidden">
+                      <button
+                        onClick={handleMoveDown}
+                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2"
+                      >
+                        Sobre Mim <span>↓</span>
+                      </button>
                     </div>
                   </motion.div>
                 )}
@@ -368,14 +415,14 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                     transition={{ duration: 0.6, type: 'spring', stiffness: 60, damping: 20 }}
                     className="max-w-7xl mx-auto w-full"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
                       <motion.div
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
                         className="order-2 md:order-1"
                       >
-                        <motion.h2 className="text-3xl md:text-4xl font-semibold tracking-tighter mb-6">
+                        <motion.h2 className="text-2xl md:text-4xl font-semibold tracking-tighter mb-4 md:mb-6">
                           <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
                             {texts.aboutTitle}
                           </span>
@@ -385,7 +432,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3, duration: 0.5 }}
-                          className="text-gray-700 leading-relaxed mb-8"
+                          className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
                         >
                           {texts.about}
                         </motion.p>
@@ -424,15 +471,25 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           initial={{ scale: 0.8, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.4, type: 'spring', stiffness: 100 }}
-                          className="w-full aspect-square rounded-2xl overflow-hidden shadow-xl relative"
+                          className="w-full rounded-2xl overflow-hidden shadow-xl relative"
                         >
                           <img 
                             src="/foto/foto.jpeg" 
                             alt="Douglas Vini" 
-                            className="w-full h-full object-cover"
+                            className="w-full h-auto block object-cover"
                           />
                         </motion.div>
                       </motion.div>
+                    </div>
+
+                    {/* Botão navegação mobile - voltar para início */}
+                    <div className="flex justify-center mt-6 md:hidden">
+                      <button
+                        onClick={handleMoveUp}
+                        className="flex items-center gap-2 text-gray-600 text-sm font-medium border border-gray-300 rounded-full px-4 py-2"
+                      >
+                        <span>↑</span> Voltar
+                      </button>
                     </div>
                   </motion.div>
                 )}

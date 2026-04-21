@@ -551,15 +551,15 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-5xl md:text-6xl font-black mb-20 text-gray-950"
+            className="text-3xl md:text-5xl lg:text-6xl font-black mb-10 md:mb-20 text-gray-950"
           >
             {label.title}
           </motion.h1>
 
           {/* Timeline container */}
           <div className="relative w-full max-w-5xl">
-            {/* Center vertical line with gradient */}
-            <div className={`absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-gradient-to-b ${currentColor} z-0 opacity-80`} />
+            {/* Left line on mobile, center line on desktop */}
+            <div className={`absolute left-3 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 md:-translate-x-1/2 bg-gradient-to-b ${currentColor} z-0 opacity-80`} />
 
             {/* Projects timeline */}
             <div className="space-y-12">
@@ -571,15 +571,15 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
                     initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                    className={`relative z-10 ${isLeft ? 'mr-auto pr-12 w-1/2' : 'ml-auto pl-12 w-1/2'}`}
+                    className={`relative z-10 pl-8 md:pl-0 md:${isLeft ? 'mr-auto pr-12 w-1/2' : 'ml-auto pl-12 w-1/2'} w-full`}
                   >
                     {/* Timeline dot */}
-                    <div className={`absolute top-6 w-4 h-4 rounded-full bg-gradient-to-r ${currentColor} z-20 ${isLeft ? '-right-8' : '-left-8'}`} />
+                    <div className={`absolute top-5 w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r ${currentColor} z-20 left-0.5 md:left-auto ${isLeft ? 'md:-right-8' : 'md:-left-8'}`} />
 
                     {/* Project card */}
                     <motion.div
                       whileHover={{ y: -5, scale: 1.02 }}
-                      className="p-5 rounded-lg border border-gray-400 hover:border-gray-600 transition-all bg-white/80 backdrop-blur"
+                      className="p-3 md:p-5 rounded-lg border border-gray-400 hover:border-gray-600 transition-all bg-white/80 backdrop-blur"
                     >
                       {/* Badge */}
                       {project.featured && (
@@ -591,17 +591,17 @@ export default function Projects({ language, colorIndex, onClose }: ProjectsProp
                       )}
 
                       {/* Title */}
-                      <h3 className="text-lg font-bold mb-2 text-gray-950">
+                      <h3 className="text-sm md:text-lg font-bold mb-1 md:mb-2 text-gray-950">
                         {project.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-700 text-xs mb-3 leading-relaxed">
+                      <p className="text-gray-700 text-xs mb-2 md:mb-3 leading-relaxed line-clamp-3">
                         {language === 'pt' ? project.longDescriptionPt : project.longDescription}
                       </p>
 
                       {/* Highlights */}
-                      <ul className="text-xs text-gray-700 mb-3 space-y-1">
+                      <ul className="hidden md:block text-xs text-gray-700 mb-3 space-y-1">
                         {(language === 'pt' ? project.highlightsPt : project.highlights).slice(0, 2).map((h) => (
                           <li key={h}>▸ {h}</li>
                         ))}
