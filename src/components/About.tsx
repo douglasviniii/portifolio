@@ -102,9 +102,9 @@ export default function About() {
             className="grid grid-cols-2 gap-4"
           >
             {[
-              { label: 'Projects Built', value: '20+' },
-              { label: 'Years Experience', value: '4+' },
-              { label: 'Technologies', value: '15+' },
+              { label: 'Projects Built', value: 'Twenty +' },
+              { label: 'Years Experience', value: 'Four +' },
+              { label: 'Technologies', value: 'Fifteen +' },
               { label: 'Coffee Cups', value: '∞' },
             ].map((stat, i) => (
               <motion.div
