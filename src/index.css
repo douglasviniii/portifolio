@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @font-face {
   font-family: 'Arista Pro';
   src: url('/fonts/Arista-Pro-Light-trial.ttf') format('truetype');
@@ -36,10 +38,18 @@
     @apply bg-gray-100 text-gray-900;
     background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 25%, #e5e7eb 50%, #d1d5db 75%, #c6cbd4 100%);
     background-attachment: fixed;
-    font-family: "Arista Pro", sans-serif;
+    font-family: "Arista Pro", "Inter", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Números com Inter para melhor legibilidade */
+  @supports (font-variant: numeric) {
+    body {
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
