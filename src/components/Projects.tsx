@@ -645,8 +645,24 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
             </div>
           </div>
 
-          {/* Close button */}
-          <div className="mt-20 flex flex-col sm:flex-row gap-4 items-center">
+          {/* Download PDF button */}
+          <div className="mt-20 flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
+              onClick={() => window.open('/portifolio.pdf', '_blank')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-8 py-3 font-semibold rounded-lg border-2 transition-all ${
+                colorIndex === 0
+                  ? 'border-gray-400 text-gray-600 hover:bg-gray-100'
+                  : `border-transparent bg-gradient-to-r ${currentColor} text-white hover:shadow-lg`
+              }`}
+            >
+              {language === 'pt' ? '📥 Baixar Portfólio' : '📥 Download Portfolio'}
+            </motion.button>
+
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
