@@ -660,7 +660,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
                   : `border-transparent bg-gradient-to-r ${currentColor} text-white hover:shadow-lg`
               }`}
             >
-              {language === 'pt' ? '📥 Baixar Portfólio' : '📥 Download Portfolio'}
+              Download
             </motion.button>
 
             <motion.button
