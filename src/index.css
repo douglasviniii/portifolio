@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Arista Pro';
+  src: url('/fonts/Arista-Pro-Light-trial.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arista Pro';
+  src: url('/fonts/Arista-Pro-Bold-trial.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arista Pro';
+  src: url('/fonts/Arista-Pro-Fat-trial.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply transition-colors duration-300;
@@ -15,7 +36,9 @@
     @apply bg-gray-100 text-gray-900;
     background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 25%, #e5e7eb 50%, #d1d5db 75%, #c6cbd4 100%);
     background-attachment: fixed;
-    font-family: 'Glacial Indifference', 'Inter', sans-serif;
+    font-family: "Arista Pro", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {

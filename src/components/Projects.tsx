@@ -675,6 +675,8 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
             </motion.button>
           </div>
         </div>
+
+
       </motion.div>
     </AnimatePresence>
   )

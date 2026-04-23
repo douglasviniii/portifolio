@@ -28,52 +28,7 @@ export default function ParticleBackground({ colorIndex = 0, absolute = false }:
   const lastTouchPos = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
-    const add = (v: number) => { intensityRef.current = Math.min(intensityRef.current + v, 5) }
-
-    const onMouseMove = (e: MouseEvent) => {
-      const dx = e.clientX - lastMousePos.current.x
-      const dy = e.clientY - lastMousePos.current.y
-      lastMousePos.current = { x: e.clientX, y: e.clientY }
-      const spd = Math.sqrt(dx * dx + dy * dy)
-      if (spd > 40) add(1.2)
-      else if (spd > 15) add(0.3)
-    }
-
-    const onWheel = (e: WheelEvent) => {
-      const spd = Math.abs(e.deltaY)
-      if (spd > 200) add(3)
-      else if (spd > 80) add(1.5)
-      else add(0.5)
-    }
-
-    const onTouchMove = (e: TouchEvent) => {
-      const t = e.touches[0]
-      const dx = t.clientX - lastTouchPos.current.x
-      const dy = t.clientY - lastTouchPos.current.y
-      lastTouchPos.current = { x: t.clientX, y: t.clientY }
-      const spd = Math.sqrt(dx * dx + dy * dy)
-      if (spd > 25) add(2)
-      else if (spd > 8) add(0.7)
-    }
-
-    // Tick: decay + sync burstCount to state (100ms — slow enough to not churn)
-    const tick = setInterval(() => {
-      intensityRef.current = Math.max(0, intensityRef.current - 0.25)
-      setBurstCount(c => {
-        const next = Math.round(intensityRef.current * 24)
-        return c === next ? c : next // skip re-render if unchanged
-      })
-    }, 100)
-
-    window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('wheel', onWheel, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    return () => {
-      clearInterval(tick)
-      window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('touchmove', onTouchMove)
-    }
+    // Partículas estáticas - sem interação com mouse/touch
   }, [])
 
   const palette = [

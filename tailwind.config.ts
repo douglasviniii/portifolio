@@ -19,7 +19,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Arista Pro', 'Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         glow: 'glow 2s ease-in-out infinite',
