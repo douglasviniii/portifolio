@@ -2,6 +2,17 @@
 
 A modern, high-performance portfolio website showcasing my fullstack and mobile development projects. Built with React, Vite, TypeScript, TailwindCSS, and Framer Motion.
 
+## Current portfolio content
+
+The active presentation lives in `src/components/Hero.tsx` and the project timeline in `src/components/Projects.tsx`. Keep their Portuguese and English copy in sync.
+
+- Experience: Java, Kotlin, mobile and web development, AI governance, agent orchestration and vibe coding with technical review.
+- Flipple Arcade: mobile app and web platform for the gaming community.
+- AgiNotas: electronic invoicing system with automated issuance through WhatsApp.
+- Search and sharing metadata: `index.html`.
+
+Validate changes with `npm ci` and `npm run build`. The existing `public/portifolio.pdf` is a separate static document; updating site copy does not regenerate it.
+
 ## 🎨 Features
 
 - **Modern UI**: Dark theme with neon accents for a unique, premium look

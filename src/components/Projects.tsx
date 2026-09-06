@@ -30,25 +30,25 @@ const projects: Project[] = [
   {
     id: 'flipple-arcade-app',
     title: 'Flipple Arcade',
-    description: 'High-performance React Native social network with real-time features',
-    descriptionPt: 'Rede social em React Native de alto desempenho com recursos em tempo real',
-    longDescription: 'A feature-rich mobile app with feed, communities, real-time chat, live streaming, gamification and marketplace. Optimized for performance with React Query, MMKV storage and FlashList for virtualized rendering.',
-    longDescriptionPt: 'Um app mobile completo com feed, comunidades, chat em tempo real, transmissão ao vivo, gamificação e marketplace. Otimizado para desempenho com React Query, armazenamento MMKV e FlashList para renderização virtualizada.',
+    description: 'Gaming app with live streaming, communities and Minecraft multiplayer in beta',
+    descriptionPt: 'App gamer com lives, comunidades e multiplayer de Minecraft em beta',
+    longDescription: 'A mobile app integrated with a web platform, bringing together live streaming, chat, communities, gamification and a marketplace. Includes Minecraft multiplayer in beta, native Android features in Kotlin and a Java backend with PostgreSQL.',
+    longDescriptionPt: 'App mobile integrado a uma plataforma web, reunindo lives, chat, comunidades, gamificação e loja. Inclui multiplayer de Minecraft em beta, recursos nativos Android em Kotlin e backend Java com PostgreSQL.',
     image: 'diamond.png',
-    tags: ['React Native', 'Expo', 'Firebase', 'React Query', 'TypeScript'],
+    tags: ['React Native', 'Java', 'Kotlin', 'PostgreSQL', 'TypeScript', 'Expo'],
     github: 'https://github.com/douglasviniii/mobile',
     live: 'https://flipplearcade.com',
     featured: true,
     highlights: [
-      'Performance-optimized caching system',
-      'Real-time messaging with Firebase',
+      'Mobile app and integrated web platform',
+      'Live streaming and Minecraft multiplayer in beta',
       'Virtualized lists with FlashList',
       'Gamification engine',
       'Live streaming integration',
     ],
     highlightsPt: [
-      'Sistema de cache otimizado',
-      'Mensagens em tempo real com Firebase',
+      'App mobile e plataforma web integrada',
+      'Lives e multiplayer de Minecraft em beta',
       'Listas virtualizadas com FlashList',
       'Motor de gamificação',
       'Integração de transmissão ao vivo',
@@ -57,25 +57,25 @@ const projects: Project[] = [
   {
     id: 'aginotas',
     title: 'AgiNotas',
-    description: 'National NFS-e invoice platform with full fiscal compliance',
-    descriptionPt: 'Plataforma nacional de notas fiscais com total conformidade fiscal',
-    longDescription: 'Enterprise-grade web platform for issuing digital invoices (NFS-e) with multi-role architecture. Features digital signature (XML-DSig), complex fiscal workflows and integration with the NFS-e ecosystem.',
-    longDescriptionPt: 'Plataforma web de nível empresarial para emissão de notas fiscais eletrônicas (NFS-e) com arquitetura multi-papel. Possui assinatura digital (XML-DSig), fluxos fiscais complexos e integração com o ecossistema NFS-e.',
+    description: 'Ready-to-use electronic invoicing with WhatsApp automation',
+    descriptionPt: 'Emissor de notas fiscais pronto, com automação pelo WhatsApp',
+    longDescription: 'Ready-to-use web system for issuing electronic service invoices (NFS-e), with automated issuance through WhatsApp. Combines API integrations, XML digital signatures and access control to simplify invoicing workflows.',
+    longDescriptionPt: 'Sistema web pronto para emissão de notas fiscais de serviço eletrônicas (NFS-e), com emissão automatizada pelo WhatsApp. Reúne integrações de API, assinatura digital XML e controle de acesso para simplificar a rotina de emissão.',
     image: 'aginotas.png',
     tags: ['Next.js', 'Firebase', 'XML/Cryptography', 'React', 'TypeScript'],
     github: 'https://github.com/douglasviniii/Aginotas',
     live: 'https://aginotas.com.br',
     featured: true,
     highlights: [
-      'Digital invoice generation',
-      'XML signing (XMLDSIG)',
+      'Automated invoice issuance through WhatsApp',
+      'Ready-to-use web invoicing system',
       'Multi-role access control',
       'Fiscal compliance automation',
       'Admin dashboard',
     ],
     highlightsPt: [
-      'Geração de notas fiscais digitais',
-      'Assinatura XML (XMLDSIG)',
+      'Emissão automatizada de notas pelo WhatsApp',
+      'Emissor web pronto para uso',
       'Controle de acesso multi-papel',
       'Automação de conformidade fiscal',
       'Painel administrativo',
@@ -576,7 +576,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
                       {project.featured && (
                         <div className="mb-3">
                           <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r ${currentColor}`}>
-                            Featured
+                            {language === 'pt' ? 'Destaque' : 'Featured'}
                           </span>
                         </div>
                       )}
@@ -587,7 +587,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-700 text-xs mb-2 md:mb-3 leading-relaxed line-clamp-3">
+                      <p className="text-gray-700 text-xs mb-2 md:mb-3 leading-relaxed">
                         {language === 'pt' ? project.longDescriptionPt : project.longDescription}
                       </p>
 
@@ -600,7 +600,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-1 mb-3">
-                        {project.tags.slice(0, 2).map((tag) => (
+                        {project.tags.map((tag) => (
                           <span key={tag} className="px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded border border-gray-400">
                             {tag}
                           </span>

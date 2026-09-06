@@ -12,23 +12,27 @@ interface HeroProps {
 const content = {
   pt: {
     title: 'Douglas Vini',
-    subtitle: 'Fullstack & Mobile',
-    description: 'Apaixonado por criar, desenvolver e trabalho com excelência',
+    subtitle: 'Fullstack, Mobile & IA',
+    description: 'Java, Kotlin e desenvolvimento web com IA aplicada a produtos reais.',
     cta1: 'Ver Trabalhos',
     cta2: 'GitHub',
     buttonProjects: 'Projetos',
     aboutTitle: 'Sobre Mim',
-    about: 'Olá, me chamo Edvandro Douglas, conhecido como Douglas Vini. Tenho vinte cinco anos e comecei a estudar programação aos dezesseis anos de idade. Tenho experiência com as tecnologias listadas abaixo e estou pronto para te conhecer através dos meus projetos. Se algo chamou a sua atenção, se você quer algo sob medida ou tem interesse em uma proposta empresarial, entre em contato pelas minhas redes sociais!\n\nA programação não é apenas parte da minha vida — ela é a minha vida. Não consigo me imaginar fazendo outra coisa. Cada desafio que surge me motiva a estudar mais, a dominar o que ainda não sei. Quando encontro algo que não consigo resolver de imediato, isso me impulsiona a ir mais fundo, até ter domínio completo do problema.\n\nTenho diversos projetos desenvolvidos, desde sistemas de emissão de notas fiscais eletrônicas até plataformas completas de mobilidade e streaming. A maioria dos meus repositórios são privados, mas posso apresentá-los em uma reunião agendada. Para mim, programar não é trabalho — é paixão. E é essa paixão que me faz querer me profissionalizar cada vez mais.\n\nUm projeto que carrego com muito carinho é o [[Flipple Arcade]] — um app de streaming voltado para jogadores mobile, onde os usuários podem transmitir suas partidas ao vivo, criar comunidades, monetizar conteúdo e muito mais. Minha inspiração veio do Omlet Arcade, um app que admirava muito e que foi encerrado em dois mil vinte e três. Quis replicar essa experiência com foco no público brasileiro, especialmente quem joga Minecraft — um jogo que fez parte da minha infância.',
+    skillsTitle: 'Tecnologias & Práticas',
+    practices: ['Governança de IA', 'Orquestração de agentes', 'Vibe coding', 'Automação'],
+    about: 'Sou Edvandro Douglas, conhecido como Douglas Vini. Comecei a estudar programação aos dezesseis anos e desenvolvo aplicações mobile, plataformas web e backends. Minha experiência inclui Java, Kotlin, React Native, React, Next.js e TypeScript, conectando interfaces, APIs e dados para transformar ideias em produtos.\n\nTenho experiência prática colocando agentes de IA para trabalhar no desenvolvimento: organizo tarefas, forneço contexto do projeto e acompanho implementação, testes e correções. Uso vibe coding para explorar ideias e acelerar a construção, com revisão técnica e responsabilidade humana sobre o resultado.\n\nPara mim, governança de IA significa definir limites de atuação, proteger credenciais e dados, documentar decisões e validar mudanças antes da publicação. Otimizar o uso de IA no trabalho é escolher o contexto e as ferramentas certos, reduzir tarefas repetitivas e retrabalho e equilibrar velocidade, custo e qualidade.\n\nSou o desenvolvedor da [[Flipple Arcade]], um app para a comunidade gamer com lives, chat, comunidades, gamificação e multiplayer de Minecraft em beta, integrado à plataforma web. É onde aplico minha experiência em desenvolvimento mobile, backend e recursos em tempo real.\n\nTambém desenvolvi o AgiNotas, um emissor de notas fiscais eletrônicas pronto, com automação para emitir notas pelo WhatsApp. O projeto conecta desenvolvimento web, integrações de API e automação de processos para simplificar a rotina de emissão.\n\nTenho ainda projetos de mobilidade, gestão e comércio. Parte dos repositórios é privada, mas posso apresentar o trabalho em uma reunião. Vamos conversar sobre o próximo produto que você quer construir?',
   },
   en: {
     title: 'Douglas Vini',
-    subtitle: 'Fullstack & Mobile',
-    description: 'Building high-performance apps and scalable backends',
+    subtitle: 'Fullstack, Mobile & AI',
+    description: 'Java, Kotlin and web development with AI applied to real products.',
     cta1: 'View My Work',
     cta2: 'GitHub',
     buttonProjects: 'Projects',
     aboutTitle: 'About Me',
-    about: `Hi, my name is Edvandro Douglas, known as Douglas Vini. I'm twenty five years old and started studying programming at sixteen. I have experience with the technologies listed below and I'm ready to meet you through my projects. If something caught your attention, if you want a custom solution, or if you're interested in a business proposal, reach out through one of my social networks!\n\nProgramming isn't just a part of my life — it is my life. I cannot imagine doing anything else. Every challenge motivates me to study harder, to master what I don't yet know. When I encounter something I can't solve right away, it drives me to go deeper, until I fully understand and conquer the problem.\n\nI've built a diverse range of projects, from electronic invoice platforms to complete mobility and streaming systems. Most of my repositories are private, but I'm happy to walk you through them in a scheduled meeting. For me, coding isn't a job — it's a passion. And that passion is what keeps pushing me to grow and become even more professional in this field.\n\nOne project I hold very close to my heart is [[Flipple Arcade]] — a streaming app built for mobile gamers, where users can broadcast gameplay live, build communities, monetize their content, and much more. My inspiration came from Omlet Arcade, an app I deeply admired that shut down in 2023. I wanted to replicate that experience with a focus on the Brazilian gaming community, especially Minecraft players — a game that was a big part of my childhood.`,
+    skillsTitle: 'Technologies & Practices',
+    practices: ['AI governance', 'Agent orchestration', 'Vibe coding', 'Automation'],
+    about: 'I am Edvandro Douglas, known as Douglas Vini. I started learning programming at sixteen and build mobile apps, web platforms and backends. My experience includes Java, Kotlin, React Native, React, Next.js and TypeScript, connecting interfaces, APIs and data to turn ideas into products.\n\nI have hands-on experience putting AI agents to work in software development: breaking down tasks, providing project context and overseeing implementation, testing and fixes. I use vibe coding to explore ideas and accelerate development, with technical review and human accountability for the outcome.\n\nTo me, AI governance means setting boundaries, protecting credentials and data, documenting decisions and validating changes before release. Optimizing AI at work means choosing the right context and tools, reducing repetitive tasks and rework, and balancing speed, cost and quality.\n\nI develop [[Flipple Arcade]], an app for the gaming community with live streaming, chat, communities, gamification and Minecraft multiplayer in beta, integrated with a web platform. It brings together my experience in mobile development, backends and real-time features.\n\nI also built AgiNotas, a ready-to-use electronic invoicing system with automation to issue invoices through WhatsApp. The project combines web development, API integrations and process automation to simplify invoicing workflows.\n\nMy other projects cover mobility, management and commerce. Some repositories are private, but I can walk you through the work in a meeting. Let’s talk about the next product you want to build.',
   },
 }
 
@@ -276,6 +280,10 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                   {texts.subtitle}
                 </motion.h2>
 
+                <p className="mx-auto max-w-xl text-sm md:text-base text-gray-600 mb-8">
+                  {texts.description}
+                </p>
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -450,7 +458,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           </span>
                         </motion.h2>
 
-                        <motion.p
+                        <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3, duration: 0.5 }}
@@ -476,7 +484,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                             }
                             return <p key={i} className="mb-3">{paragraph}</p>
                           })}
-                        </motion.p>
+                        </motion.div>
 
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
@@ -484,9 +492,9 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           transition={{ delay: 0.4, duration: 0.5 }}
                           className="space-y-3"
                         >
-                          <p className="text-sm text-gray-600 font-semibold">Linguagens & Tecnologias:</p>
+                          <p className="text-sm text-gray-600 font-semibold">{texts.skillsTitle}</p>
                           <div className="flex flex-wrap gap-2">
-                            {['JavaScript', 'TypeScript', 'React', 'React Native', 'Next.js', 'Node.js', 'Firebase', 'NestJS'].map((tech, i) => (
+                            {['Java', 'Kotlin', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Next.js', 'Node.js', 'PostgreSQL', 'NestJS', ...texts.practices].map((tech, i) => (
                               <motion.span
                                 key={tech}
                                 initial={{ opacity: 0, y: 5, scale: 0.8 }}
