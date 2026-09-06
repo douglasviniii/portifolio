@@ -71,7 +71,13 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-lg text-gray-300 leading-relaxed">
+              Edvandro Douglas · Medianeira – PR, Brazil · 25 years old. 5+ years of experience in software development.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
               I am currently studying Systems Analysis and Development (ADS).
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Portfolio: <a href="https://douglasvini.delvind.com" className="text-neon-cyan underline break-words">douglasvini.delvind.com</a>
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
               I'm a <span className="text-neon-pink font-bold">fullstack developer</span> with a strong focus on mobile development and modern JavaScript/TypeScript ecosystems. Over the years, I've built complete products from zero to production, managing everything from iOS/Android apps to complex backend systems.
@@ -106,7 +112,7 @@ export default function About() {
           >
             {[
               { label: 'Projects Built', value: 'Twenty +' },
-              { label: 'Years Experience', value: 'Four +' },
+              { label: 'Years Experience', value: '5+' },
               { label: 'Technologies', value: 'Fifteen +' },
               { label: 'Coffee Cups', value: '∞' },
             ].map((stat, i) => (

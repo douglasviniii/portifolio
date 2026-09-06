@@ -18,6 +18,9 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projetos',
     aboutTitle: 'Sobre Mim',
+    profile: 'Edvandro Douglas · Medianeira – PR · 25 anos',
+    experience: '5+ anos de experiência em desenvolvimento de software.',
+    portfolioLabel: 'Portfólio',
     education: 'Atualmente, estou cursando Análise e Desenvolvimento de Sistemas (ADS).',
     skillsTitle: 'Tecnologias & Práticas',
     practices: ['Governança de IA', 'Orquestração de agentes', 'Vibe coding', 'Automação'],
@@ -31,6 +34,9 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projects',
     aboutTitle: 'About Me',
+    profile: 'Edvandro Douglas · Medianeira – PR, Brazil · 25 years old',
+    experience: '5+ years of experience in software development.',
+    portfolioLabel: 'Portfolio',
     education: 'I am currently studying Systems Analysis and Development (ADS).',
     skillsTitle: 'Technologies & Practices',
     practices: ['AI governance', 'Agent orchestration', 'Vibe coding', 'Automation'],
@@ -466,7 +472,15 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           transition={{ delay: 0.3, duration: 0.5 }}
                           className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
                         >
-                          <p className="mb-3 font-semibold">{texts.education}</p>
+                          <p className="mb-1 font-semibold">{texts.profile}</p>
+                          <p className="mb-1">{texts.experience}</p>
+                          <p className="mb-1">{texts.education}</p>
+                          <p className="mb-4">
+                            {texts.portfolioLabel}: {' '}
+                            <a href="https://douglasvini.delvind.com" className="text-purple-600 hover:text-purple-800 underline break-words">
+                              douglasvini.delvind.com
+                            </a>
+                          </p>
                           {texts.about.split('\n\n').map((paragraph, i) => {
                             if (paragraph.includes('[[Flipple Arcade]]')) {
                               const parts = paragraph.split('[[Flipple Arcade]]')
