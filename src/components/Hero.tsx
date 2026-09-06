@@ -18,6 +18,7 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projetos',
     aboutTitle: 'Sobre Mim',
+    education: 'Atualmente, estou cursando Análise e Desenvolvimento de Sistemas (ADS).',
     skillsTitle: 'Tecnologias & Práticas',
     practices: ['Governança de IA', 'Orquestração de agentes', 'Vibe coding', 'Automação'],
     about: 'Sou Edvandro Douglas, conhecido como Douglas Vini. Comecei a estudar programação aos dezesseis anos e desenvolvo aplicações mobile, plataformas web e backends. Minha experiência inclui Java, Kotlin, React Native, React, Next.js e TypeScript, conectando interfaces, APIs e dados para transformar ideias em produtos.\n\nTenho experiência prática colocando agentes de IA para trabalhar no desenvolvimento: organizo tarefas, forneço contexto do projeto e acompanho implementação, testes e correções. Uso vibe coding para explorar ideias e acelerar a construção, com revisão técnica e responsabilidade humana sobre o resultado.\n\nPara mim, governança de IA significa definir limites de atuação, proteger credenciais e dados, documentar decisões e validar mudanças antes da publicação. Otimizar o uso de IA no trabalho é escolher o contexto e as ferramentas certos, reduzir tarefas repetitivas e retrabalho e equilibrar velocidade, custo e qualidade.\n\nSou o desenvolvedor da [[Flipple Arcade]], um app para a comunidade gamer com lives, chat, comunidades, gamificação e multiplayer de Minecraft em beta, integrado à plataforma web. É onde aplico minha experiência em desenvolvimento mobile, backend e recursos em tempo real.\n\nTambém desenvolvi o AgiNotas, um emissor de notas fiscais eletrônicas pronto, com automação para emitir notas pelo WhatsApp. O projeto conecta desenvolvimento web, integrações de API e automação de processos para simplificar a rotina de emissão.\n\nTenho ainda projetos de mobilidade, gestão e comércio. Parte dos repositórios é privada, mas posso apresentar o trabalho em uma reunião. Vamos conversar sobre o próximo produto que você quer construir?',
@@ -30,6 +31,7 @@ const content = {
     cta2: 'GitHub',
     buttonProjects: 'Projects',
     aboutTitle: 'About Me',
+    education: 'I am currently studying Systems Analysis and Development (ADS).',
     skillsTitle: 'Technologies & Practices',
     practices: ['AI governance', 'Agent orchestration', 'Vibe coding', 'Automation'],
     about: 'I am Edvandro Douglas, known as Douglas Vini. I started learning programming at sixteen and build mobile apps, web platforms and backends. My experience includes Java, Kotlin, React Native, React, Next.js and TypeScript, connecting interfaces, APIs and data to turn ideas into products.\n\nI have hands-on experience putting AI agents to work in software development: breaking down tasks, providing project context and overseeing implementation, testing and fixes. I use vibe coding to explore ideas and accelerate development, with technical review and human accountability for the outcome.\n\nTo me, AI governance means setting boundaries, protecting credentials and data, documenting decisions and validating changes before release. Optimizing AI at work means choosing the right context and tools, reducing repetitive tasks and rework, and balancing speed, cost and quality.\n\nI develop [[Flipple Arcade]], an app for the gaming community with live streaming, chat, communities, gamification and Minecraft multiplayer in beta, integrated with a web platform. It brings together my experience in mobile development, backends and real-time features.\n\nI also built AgiNotas, a ready-to-use electronic invoicing system with automation to issue invoices through WhatsApp. The project combines web development, API integrations and process automation to simplify invoicing workflows.\n\nMy other projects cover mobility, management and commerce. Some repositories are private, but I can walk you through the work in a meeting. Let’s talk about the next product you want to build.',
@@ -464,6 +466,7 @@ export default function Hero({ setActiveSection, language, onExpandedChange, col
                           transition={{ delay: 0.3, duration: 0.5 }}
                           className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8"
                         >
+                          <p className="mb-3 font-semibold">{texts.education}</p>
                           {texts.about.split('\n\n').map((paragraph, i) => {
                             if (paragraph.includes('[[Flipple Arcade]]')) {
                               const parts = paragraph.split('[[Flipple Arcade]]')
