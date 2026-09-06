@@ -17,9 +17,9 @@ interface Project {
   descriptionPt: string
   longDescription: string
   longDescriptionPt: string
-  image: string
+  image?: string
   tags: string[]
-  github: string
+  github?: string
   live?: string
   featured: boolean
   highlights: string[]
@@ -323,6 +323,27 @@ const projects: Project[] = [
     ],
   },
   {
+    id: 'moderna-perfumaria',
+    title: 'Moderna Perfumaria',
+    description: 'Online perfume store with retail and wholesale catalogs',
+    descriptionPt: 'Loja online de perfumes com catálogos de varejo e atacado',
+    longDescription: 'E-commerce website for perfumes, gift sets and presents, built with Next.js. Features women’s and men’s fragrance categories, product search, a shopping cart and a dedicated wholesale catalog with minimum-order information.',
+    longDescriptionPt: 'E-commerce de perfumes, kits e presentes desenvolvido com Next.js. Reúne categorias de perfumaria feminina e masculina, busca de produtos, carrinho e catálogo exclusivo para atacadistas com informações de pedido mínimo.',
+    tags: ['Next.js', 'React', 'E-commerce'],
+    live: 'https://modernaperfumaria.com.br/',
+    featured: false,
+    highlights: [
+      'Product search and shopping cart',
+      'Dedicated wholesale catalog',
+      'Fragrance, gift set and present categories',
+    ],
+    highlightsPt: [
+      'Busca de produtos e carrinho de compras',
+      'Catálogo dedicado a atacadistas',
+      'Categorias de perfumes, kits e presentes',
+    ],
+  },
+  {
     id: 'lucas-imports',
     title: 'Lucas Imports Cell',
     description: 'Mobile phone accessories e-commerce and electronics store',
@@ -609,6 +630,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
 
                       {/* Links */}
                       <div className="flex gap-2 pt-3 border-t border-gray-300">
+                        {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
@@ -622,6 +644,7 @@ export default function Projects({ language, colorIndex, onClose, onAboutMe }: P
                         >
                           {label.viewCode}
                         </a>
+                        )}
                         {project.live && (
                           <a
                             href={project.live}
